@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rent</title>
+  <style>
+    body {font-family: Arial, Helvetica, sans-serif;
+      background-image: url(../imgs/header.jpg);
+    background-size: cover;
+    
+    }
+    * {box-sizing: border-box;}
+    
+    .form-inline {  
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+    
+    .form-inline label {
+      margin: 5px 10px 5px 0;
+    }
+    
+    .form-inline input {
+      vertical-align: middle;
+      margin: 5px 10px 5px 0;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+    }
+
+    form-inline select {
+      margin-right: 20px;
+    }
+    
+    .form-inline button {
+      padding: 10px 20px;
+      background-color: #bd8cbf;
+      border: 1px solid #ddd;
+      color: white;
+      cursor: pointer;
+    }
+    
+    .form-inline button:hover {
+      background-color: royalblue;
+    }
+    
+    @media (max-width: 800px) {
+      .form-inline input {
+        margin: 10px 0;
+      }
+      
+      .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+
+    #customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #bd8cbf;
+  color: white;
+}
+    </style>
+</head>
+<body>
+  <h1>RENT</h1>
+
+<form class="form-inline" action="/rent" method="GET">
+
+    <label for="place">Where are you going? </label>
+    <select id="place" name="place" style="margin-right:2%;">
+        <option value="Pondicherry" selected>Pondicherry</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Shimla">Shimla</option>
+        <option value="Ooty">Ooty</option>
+      </select>
+
+
+      
+
+      <label for="startdata">From:</label>
+      <input type="date" id="startdate" name="startdate">
+      <label for="enddata">To:</label>
+      <input type="date" id="enddate" name="enddate">
+
+      <label for="type">Where do you want to stay? </label>
+
+      <select id="type" name="type" style="margin-right:2%;">
+        <option value="2BHKApartment" selected>2 BHK Apartment</option>
+        <option value="Villa">Villa</option>
+        <option value="3BHKApartment">3 BHK Apartment</option>
+        <option value="Cottage">Cottage</option>
+      </select>
+      
+      <button type="submit">Search</button>
+
+</form>
+
+
+<h2>Search results for you: </h2>
+
+<table id="customers">
+  <tr>
+      <th>
+          Place
+      </th>
+      <th>
+          Address
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Price per night
+      </th>
+      <th>
+        Hosted by
+      </th>
+      <th>
+        Book Now
+      </th>
+  </tr>
+  <% for(var i=0; i<rentPlaces.length; i++){ %>
+  <tr>
+      <td><%= rentPlaces[i].place %></td>
+      <td><%= rentPlaces[i].address %></td>
+      <td><%= rentPlaces[i].type %></td>
+      <td><%= rentPlaces[i].price %></td>
+      <td><%= rentPlaces[i].hostedBy %></td>
+      <td><button style="background-color: #bd8cbf;color: #fff;">Book Now!</button></td>
+  </tr>
+
+  <%}%>
+  
+  
+</table>
+</body>
+</html>
+
